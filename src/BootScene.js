@@ -1,4 +1,3 @@
-import AnimatedTiles from 'phaser-animated-tiles';
 
 class BootScene extends Phaser.Scene {
     constructor(test) {
@@ -30,7 +29,6 @@ class BootScene extends Phaser.Scene {
     }
     create()
     {
-      app.log.push("Boot Games...");
       this.scene.start('SelectScene');
     }
 }

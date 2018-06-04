@@ -19,7 +19,7 @@ class GameScene extends Phaser.Scene {
     select_job = data.job;
     select_boss = data.boss;
     Chara = new Character.PCharacter(select_job,select_boss);
-    app.log.push("You Select " + Chara.job + " VS. " + Chara.boss);
+    vueapp.log.push("You Select " + Chara.job + " VS. " + Chara.boss);
     time_CD = Chara.boss_status['CD'];
   }
   preload() {

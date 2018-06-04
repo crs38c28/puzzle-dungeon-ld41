@@ -55,10 +55,10 @@ function boss_attack(){
   character.status['AM'] -= (PD + MD);
   if(character.status['AM'] < 0){
     character.status['HP'] += character.status['AM'];
-    app.log.push("[Boss Attack] You Lose "+(character.status['AM']*-1)+" HP");
+    vueapp.log.push("[Boss Attack] You Lose "+(character.status['AM']*-1)+" HP");
     character.status['AM'] = 0;
   }else{
-    app.log.push("[Boss Attack] You use your armor to defend it.");
+    vueapp.log.push("[Boss Attack] You use your armor to defend it.");
   }
   if(character.status['HP']>=10){
     character.HPtext.setText(''+character.status['HP']);
@@ -121,7 +121,7 @@ function attack(){
   });
   if((character.boss_status['HP']<=15)&&(!character.BOSSultBOOL)){
     character.BOSSultBOOL = true;
-    app.log.push("[!ULTIMATE!] "+character.boss+" is so angry! He used his ultimate skill! Watch out!");
+    vueapp.log.push("[!ULTIMATE!] "+character.boss+" is so angry! He used his ultimate skill! Watch out!");
     Tweens.add({
       targets: character.BOSSult,
       alpha: { value: 1, duration: 2000, yoyo: false },
@@ -199,7 +199,7 @@ function skill_update(){
         add_value([-4,0,0,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(7-character.boss_status['AR']);
         attack();
-        app.log.push("[ATTACK] You use Starbust Sword! Deal "+(7-character.boss_status['AR'])+" physical damage");
+        vueapp.log.push("[ATTACK] You use Starbust Sword! Deal "+(7-character.boss_status['AR'])+" physical damage");
       }
       else if(skillmeter['shield']>=5){
         character.skilltext.setText('Armor Guard');
@@ -207,7 +207,7 @@ function skill_update(){
         add_value([0,-5,0,0]);
         character.status['AM'] += 3;
         defend();
-        app.log.push("[DEFEND] You use Armor Guard! Get 3 armor.");
+        vueapp.log.push("[DEFEND] You use Armor Guard! Get 3 armor.");
       }
       else if(skillmeter['magic']>=5){
         character.skilltext.setText('Howl ! !');
@@ -215,7 +215,7 @@ function skill_update(){
         add_value([0,0,-5,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(4-character.boss_status['MR']);
         attack();
-        app.log.push("[ATTACK] You use Howl! Deal "+(4-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[ATTACK] You use Howl! Deal "+(4-character.boss_status['MR'])+" magic damage.");
       }
       else if(skillmeter['heal']>=5){
         character.skilltext.setText('Healing Potion');
@@ -226,7 +226,7 @@ function skill_update(){
           character.status['HP']=character.status['HP_MAX'];
         }
         healing();
-        app.log.push("[HEAL] You use potion! Heal 3 HP.");
+        vueapp.log.push("[HEAL] You use potion! Heal 3 HP.");
       }
       else if((skillmeter['physical']>=3)&&(skillmeter['heal']>=3)){
         character.skilltext.setText('Life Steal Slash ! !');
@@ -240,7 +240,7 @@ function skill_update(){
         }
         attack();
         healing();
-        app.log.push("[ATTACK/HEAL] You use Life Steal Slash ! Deal "+(4-character.boss_status['AR'])+" physical damage. Heal 2 HP.");
+        vueapp.log.push("[ATTACK/HEAL] You use Life Steal Slash ! Deal "+(4-character.boss_status['AR'])+" physical damage. Heal 2 HP.");
       }
       else if((skillmeter['physical']>=3)&&(skillmeter['shield']>=3)){
         character.skilltext.setText('Shield Smash ! !');
@@ -251,7 +251,7 @@ function skill_update(){
         character.status['AM'] += 2;
         attack();
         defend();
-        app.log.push("[ATTACK/DEFEND] You use Shield Smash ! Deal"+(4-character.boss_status['AR'])+" physical damage. Get 2 Armor.");
+        vueapp.log.push("[ATTACK/DEFEND] You use Shield Smash ! Deal"+(4-character.boss_status['AR'])+" physical damage. Get 2 Armor.");
       }
       else if((skillmeter['physical']>=3)&&(skillmeter['magic']>=3)){
         character.skilltext.setText('Ice Slash ! !');
@@ -261,7 +261,7 @@ function skill_update(){
         character.boss_status['HP'] = character.boss_status['HP']-(5-character.boss_status['AR']);
         character.boss_status['HP'] = character.boss_status['HP']-(3-character.boss_status['MR']);
         attack();
-        app.log.push("[ATTACK] You use Ice Slash ! Deal "+(5-character.boss_status['AR'])+" physical damage and "+(3-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[ATTACK] You use Ice Slash ! Deal "+(5-character.boss_status['AR'])+" physical damage and "+(3-character.boss_status['MR'])+" magic damage.");
       }
       else{
         FLAG_LOCK=false;
@@ -274,7 +274,7 @@ function skill_update(){
         add_value([0,-4,0,0]);
         character.status['AM'] += 5;
         defend();
-        app.log.push("[DEFEND] You use Shield UP! Get 5 armor.");
+        vueapp.log.push("[DEFEND] You use Shield UP! Get 5 armor.");
       }
       else if(skillmeter['physical']>=5){
         character.skilltext.setText('Holy Sword!');
@@ -282,7 +282,7 @@ function skill_update(){
         add_value([-5,0,0,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(4-character.boss_status['AR']);
         attack();
-        app.log.push("[ATTACK] You use Holy Sword! Deal "+(4-character.boss_status['AR'])+" physical damage");
+        vueapp.log.push("[ATTACK] You use Holy Sword! Deal "+(4-character.boss_status['AR'])+" physical damage");
       }
       else if(skillmeter['heal']>=5){
         character.skilltext.setText('Potion Heal');
@@ -293,7 +293,7 @@ function skill_update(){
           character.status['HP']=character.status['HP_MAX'];
         }
         healing();
-        app.log.push("[HEAL] You use potion! Heal 3 HP.");
+        vueapp.log.push("[HEAL] You use potion! Heal 3 HP.");
       }
       else if(skillmeter['magic']>=5){
         character.skilltext.setText('Holy Light!');
@@ -301,7 +301,7 @@ function skill_update(){
         add_value([0,0,-5,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(4-character.boss_status['MR']);
         attack();
-        app.log.push("[ATTACK] You use Holy Light! Deal "+(4-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[ATTACK] You use Holy Light! Deal "+(4-character.boss_status['MR'])+" magic damage.");
       }
       else if((skillmeter['shield']>=3)&&(skillmeter['heal']>=3)){
         character.skilltext.setText('Protection Shield');
@@ -315,7 +315,7 @@ function skill_update(){
         }
         defend();
         healing();
-        app.log.push("[DEFEND/HEAL] You use Protection Shield! Get 3 armor. Heal 2 HP");
+        vueapp.log.push("[DEFEND/HEAL] You use Protection Shield! Get 3 armor. Heal 2 HP");
       }
       else if((skillmeter['shield']>=3)&&(skillmeter['physical']>=3)){
         character.skilltext.setText('Shield Attack');
@@ -326,7 +326,7 @@ function skill_update(){
         character.boss_status['HP'] = character.boss_status['HP']-(3-character.boss_status['AR']);
         defend();
         attack();
-        app.log.push("[DEFEND/ATTACK] You use Shield Attack! Get 2 armor. Deal "+(3-character.boss_status['AR'])+" physical damage.");
+        vueapp.log.push("[DEFEND/ATTACK] You use Shield Attack! Get 2 armor. Deal "+(3-character.boss_status['AR'])+" physical damage.");
       }
       else if((skillmeter['shield']>=3)&&(skillmeter['magic']>=3)){
         character.skilltext.setText('Shield Magic');
@@ -337,7 +337,7 @@ function skill_update(){
         character.boss_status['HP'] = character.boss_status['HP']-(3-character.boss_status['MR']);
         defend();
         attack();
-        app.log.push("[DEFEND/ATTACK] You use Shield Magic! Get 2 armor. Deal "+(3-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[DEFEND/ATTACK] You use Shield Magic! Get 2 armor. Deal "+(3-character.boss_status['MR'])+" magic damage.");
       }
       else{
         FLAG_LOCK=false;
@@ -350,7 +350,7 @@ function skill_update(){
         add_value([0,0,-4,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(7-character.boss_status['MR']);
         attack();
-        app.log.push("[ATTACK] You use Explosion! ! ! Deal "+(7-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[ATTACK] You use Explosion! ! ! Deal "+(7-character.boss_status['MR'])+" magic damage.");
       }
       else if(skillmeter['physical']>=5){
         character.skilltext.setText('Staff Attack!');
@@ -358,7 +358,7 @@ function skill_update(){
         add_value([-5,0,0,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(4-character.boss_status['AR']);
         attack();
-        app.log.push("[ATTACK] You use Staff Attack! Deal "+(4-character.boss_status['AR'])+" physical damage");
+        vueapp.log.push("[ATTACK] You use Staff Attack! Deal "+(4-character.boss_status['AR'])+" physical damage");
       }
       else if(skillmeter['shield']>=5){
         character.skilltext.setText('Armor Guard');
@@ -366,7 +366,7 @@ function skill_update(){
         add_value([0,-5,0,0]);
         character.status['AM'] += 3;
         defend();
-        app.log.push("[DEFEND] You use Armor Guard! Get 3 armor.");
+        vueapp.log.push("[DEFEND] You use Armor Guard! Get 3 armor.");
       }
       else if(skillmeter['heal']>=5){
         character.skilltext.setText('Potion Heal');
@@ -377,7 +377,7 @@ function skill_update(){
           character.status['HP']=character.status['HP_MAX'];
         }
         healing();
-        app.log.push("[HEAL] You use potion! Heal 3 HP.");
+        vueapp.log.push("[HEAL] You use potion! Heal 3 HP.");
       }
       else if((skillmeter['magic']>=3)&&(skillmeter['heal']>=3)){
         character.skilltext.setText('Dark Magic!');
@@ -391,7 +391,7 @@ function skill_update(){
         }
         attack();
         healing();
-        app.log.push("[ATTACK/HEAL] You use Dark Magic! Deal "+(4-character.boss_status['MR'])+" magic damage. Heal 3 HP.");
+        vueapp.log.push("[ATTACK/HEAL] You use Dark Magic! Deal "+(4-character.boss_status['MR'])+" magic damage. Heal 3 HP.");
       }
       else if((skillmeter['magic']>=3)&&(skillmeter['shield']>=3)){
         character.skilltext.setText('Magic shield!');
@@ -402,7 +402,7 @@ function skill_update(){
         character.status['AM'] += 2;
         attack();
         defend();
-        app.log.push("[ATTACK/DEFEND] You use Magic shield! Deal "+(4-character.boss_status['MR'])+" magic damage. Get 2 armor.");
+        vueapp.log.push("[ATTACK/DEFEND] You use Magic shield! Deal "+(4-character.boss_status['MR'])+" magic damage. Get 2 armor.");
       }
       else if((skillmeter['magic']>=3)&&(skillmeter['physical']>=3)){
         character.skilltext.setText('Magic sword!');
@@ -412,7 +412,7 @@ function skill_update(){
         character.boss_status['HP'] = character.boss_status['HP']-(3-character.boss_status['AR']);
         character.boss_status['HP'] = character.boss_status['HP']-(5-character.boss_status['MR']);
         attack();
-         app.log.push("[ATTACK] You use Magic sword! Deal "+(3-character.boss_status['AR'])+" physical damage and "+(5-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[ATTACK] You use Magic sword! Deal "+(3-character.boss_status['AR'])+" physical damage and "+(5-character.boss_status['MR'])+" magic damage.");
       }
       else{
         FLAG_LOCK=false;
@@ -428,7 +428,7 @@ function skill_update(){
           character.status['HP']=character.status['HP_MAX'];
         }
         healing();
-        app.log.push("[HEAL] You use Healing! Heal 6 HP.");
+        vueapp.log.push("[HEAL] You use Healing! Heal 6 HP.");
       }
       else if(skillmeter['shield']>=5){
         character.skilltext.setText('Armor Guard!');
@@ -436,7 +436,7 @@ function skill_update(){
         add_value([0,-5,0,0]);
         character.status['AM'] += 3;
         defend();
-        app.log.push("[DEFEND] You use Armor Guard! Get 3 armor.");
+        vueapp.log.push("[DEFEND] You use Armor Guard! Get 3 armor.");
       }
       else if(skillmeter['magic']>=5){
         character.skilltext.setText('Light Magic!');
@@ -444,14 +444,14 @@ function skill_update(){
         add_value([0,0,-5,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(4-character.boss_status['MR']);
         attack();
-        app.log.push("[ATTACK] You use Light Magic! Deal "+(4-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[ATTACK] You use Light Magic! Deal "+(4-character.boss_status['MR'])+" magic damage.");
       }
       else if(skillmeter['physical']>=5){
         character.skilltext.setText('Light Sword!');
         skillmeter['physical']-=5;
         add_value([-5,0,0,0]);
         character.boss_status['HP'] = character.boss_status['HP']-(4-character.boss_status['AR']);
-        app.log.push("[ATTACK] You use Light Sword! Deal "+(4-character.boss_status['AR'])+" physical damage.");
+        vueapp.log.push("[ATTACK] You use Light Sword! Deal "+(4-character.boss_status['AR'])+" physical damage.");
         attack();
       }
       else if((skillmeter['heal']>=3)&&(skillmeter['shield']>=3)){
@@ -466,7 +466,7 @@ function skill_update(){
         }
         healing();
         defend();
-        app.log.push("[HEAL/DEFEND] You use Healing Shield! Heal 3 HP. Get 3 armor.");
+        vueapp.log.push("[HEAL/DEFEND] You use Healing Shield! Heal 3 HP. Get 3 armor.");
       }
       else if((skillmeter['heal']>=3)&&(skillmeter['physical']>=3)){
         character.skilltext.setText('Holy Water!');
@@ -480,7 +480,7 @@ function skill_update(){
         }
         attack();
         healing();
-        app.log.push("[HEAL/ATTACK] You use Holy Water! Heal 3 HP. Deal "+(3-character.boss_status['AR'])+" physical damage.");
+        vueapp.log.push("[HEAL/ATTACK] You use Holy Water! Heal 3 HP. Deal "+(3-character.boss_status['AR'])+" physical damage.");
       }
       else if((skillmeter['heal']>=3)&&(skillmeter['magic']>=3)){
         character.skilltext.setText('Holy Magic!');
@@ -494,7 +494,7 @@ function skill_update(){
         }
         attack();
         healing();
-        app.log.push("[HEAL/ATTACK] You use Holy Magic! Heal 3 HP. Deal "+(3-character.boss_status['MR'])+" magic damage.");
+        vueapp.log.push("[HEAL/ATTACK] You use Holy Magic! Heal 3 HP. Deal "+(3-character.boss_status['MR'])+" magic damage.");
       }
       else{
         FLAG_LOCK=false;
